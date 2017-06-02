@@ -5,7 +5,7 @@ class NP_NCTagConv extends NucleusPlugin
 	function getName()			 {	return 'NP_NCTagConv';	}
 	function getAuthor()		 {	return "yama";	}
 	function getURL()			 {	return 'http://japan.nucleuscms.org/wiki/plugins:nctagconv';	}
-	function getVersion()		 {	return '0.1';	}
+	function getVersion()		 {	return '0.1.1';	}
 	function getDescription()	 {	return "tagconv";	}
 	function supportsFeature($w) {	return (int)($w=='SqlTablePrefix');}
 	function getEventList()		 {	return array(	'PrepareItemForEdit');}
@@ -27,7 +27,7 @@ class NP_NCTagConv extends NucleusPlugin
 		$height = "height=\"$matches[3]\" ";
 		$alttext  = ($matches[4]==='') ? "alt=\"$matches[4]\" ":'';
 		$authorid = $this->curItem['authorid'];
-		$imagepath  = (eregi("/",$filename))? $filename: $authorid.'/'.$filename;
+		$imagepath  = (strpos($filename,'/')!==false) ? $filename: $authorid.'/'.$filename;
 		$imagepath = $CONF['MediaURL'].$imagepath;
 
 		return '<img src="' .$imagepath .'" ' . $width. $height. $alttext . '/>';
